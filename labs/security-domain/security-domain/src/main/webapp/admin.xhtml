@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	Members List
+    </ui:define>
+	<ui:define name="application_name">
+    	Say Hello
+    </ui:define>
+	<ui:define name="content">
+		<h1>All registered users</h1>
+		<br class="clear"/>
+		<h:form id="viewform">
+			
+				<h:outputLabel value="Users:"/>
+				<br class="clear"/>
+				<ul>
+					<ui:repeat value="#{personBean.persons}" var="person">
+						<li>
+							<h:outputText value="#{person.name}"/><br/>
+							
+						</li>
+					</ui:repeat>
+				</ul>
+				<h:link value="Back" outcome="index" />
+				
+			</h:form>
+	</ui:define>
+</ui:composition>

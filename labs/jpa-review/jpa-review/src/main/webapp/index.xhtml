@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	Department View web app
+    </ui:define>
+	<ui:define name="application_name">
+    	Department View web app
+    </ui:define>
+	<ui:define name="content">
+		<h1>Department View web app</h1>
+		<br class="clear"/>
+		<h:form id="form">
+			<p class="input">
+				<h:outputLabel value="Select a Department:" for="department" />
+				<h:selectOneMenu id="department" value="#{departmentView.currentDepartment}" valueChangeListener="#{departmentView.update}" onchange="submit()" converter="SelectItemToEntityConverter">
+					<f:selectItem itemLabel="Choose one ..." itemValue="#{null}"/>
+					<f:selectItems value="#{departmentView.departments}" var="department" itemValue="#{department}" itemLabel="#{department.name}"/>
+				</h:selectOneMenu>
+			</p>
+			<br class="clear"/>
+			<br class="clear"/>
+			<p>
+				<h:outputLabel value="Manager:" for="manager"/>
+				<h:outputText value="#{departmentView.manager.name}" id="manager"/>
+				<br class="clear"/>
+				<br class="clear"/>
+				<h:outputLabel value="Employees:"/>
+				<br class="clear"/>
+				<ul>
+					<ui:repeat value="#{departmentView.employees}" var="person">
+						<li>
+							<h:outputText value="#{person.name}"/>
+						</li>
+					</ui:repeat>
+				</ul>
+			</p>
+		</h:form>
+	</ui:define>
+</ui:composition>

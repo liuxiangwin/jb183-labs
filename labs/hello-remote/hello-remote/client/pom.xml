@@ -1,0 +1,111 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+		<artifactId>hello-client</artifactId>
+		<packaging>jar</packaging>
+		<parent>
+	  	<groupId>com.redhat.training</groupId>
+	  	<artifactId>parent-pom</artifactId>
+	  	<version>1.0</version>
+	  	<relativePath>../../pom.xml</relativePath>
+  </parent>
+
+		<properties>
+        <version.exec.plugin>1.2.1</version.exec.plugin>
+    </properties>
+
+		<dependencies>
+
+        <!-- First declare the APIs we depend on and need for compilation. All
+            of them are provided by JBoss EAP -->
+
+        <!-- Import the CDI API, we use provided scope as the API is included in
+            JBoss EAP -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Import the EJB API, we use provided scope as the API is included in
+            JBoss EAP -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+		<!-- We depend on the EJB remote business interfaces of this application -->
+        <dependency>
+            <groupId>com.redhat.training</groupId>
+            <artifactId>hello-remote-ejb</artifactId>
+            <type>ejb-client</type>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- Include the ejb client jars -->
+        <dependency>
+            <groupId>org.jboss.eap</groupId>
+            <artifactId>wildfly-ejb-client-bom</artifactId>
+            <type>pom</type>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+		<build>
+	        <finalName>hello-client</finalName>
+	        <plugins>
+
+	            <!-- Add the maven exec plug-in to allow us to run a java program
+	                via maven -->
+	            <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>exec-maven-plugin</artifactId>
+	                <version>${version.exec.plugin}</version>
+	                <executions>
+	                    <execution>
+	                        <goals>
+	                            <goal>exec</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+	                <configuration>
+	                    <executable>java</executable>
+	                    <workingDirectory>${project.build.directory}/exec-working-directory</workingDirectory>
+	                    <mainClass>com.redhat.training.client.HelloClient</mainClass>
+	                </configuration>
+	            </plugin>
+	            <!-- build standalone exe jar -->
+	            <plugin>
+	                <artifactId>maven-assembly-plugin</artifactId>
+	                <configuration>
+	                    <descriptorRefs>
+	                        <descriptorRef>jar-with-dependencies</descriptorRef>
+	                    </descriptorRefs>
+	                    <archive>
+	                        <manifest>
+	                            <mainClass>com.redhat.training.client.HelloClient</mainClass>
+	                        </manifest>
+	                    </archive>
+	                </configuration>
+	            </plugin>
+
+	            <!-- The WildFly plug-in deploys your apps to a local WildFly
+	                container -->
+	            <!-- Disabling it here means that we don't try to deploy this
+	                POM! -->
+	            <plugin>
+	                <groupId>org.wildfly.plugins</groupId>
+	                <artifactId>wildfly-maven-plugin</artifactId>
+	                <version>${version.wildfly.maven.plugin}</version>
+	                <inherited>true</inherited>
+	                <configuration>
+	                    <skip>true</skip>
+	                </configuration>
+	            </plugin>
+	        </plugins>
+
+	    </build>
+</project>

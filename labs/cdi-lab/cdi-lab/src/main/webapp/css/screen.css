@@ -1,0 +1,82 @@
+/* Core styles for the page */
+
+.done-true {
+  text-decoration: line-through;
+}
+
+/*  -----  table style  -------  */
+
+
+/*  = Simple Table style (black header, grey/white stripes  */
+
+.simpletablestyle {
+  background-color:#E6E7E8;
+  clear:both;
+  width: 550px;
+}
+
+.simpletablestyle img {
+  border:0px;
+}
+
+.simpletablestyle td {
+  height:2em;
+  padding-left: 6px;
+  font-size:11px;
+  padding:5px 5px;
+}
+
+.simpletablestyle th {
+	background: url(../gfx/bkg-blkheader.png) black repeat-x top left;
+  font-size:12px;
+  font-weight:normal;
+  padding:0 10px 0 5px;
+  border-bottom:#999999 dotted 1px;
+}
+
+.simpletablestyle thead {
+  background: url(../gfx/bkg-blkheader.png) black repeat-x top left;
+  height:31px;
+  font-size:10px;
+  font-weight:bold;
+  color:#FFFFFF;
+  text-align:left;
+}
+
+.simpletablestyle .header a {
+  color:#94aebd;
+}
+
+.simpletablestype tfoot {
+	height: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #EAECEE;
+  text-align: center;
+}
+
+.simpletablestyle tr.header td {
+  padding: 0px 10px 0px 5px;
+}
+
+
+.simpletablestyle .subheader {
+  background-color: #e6e7e8;
+  font-size:10px;
+  font-weight:bold;
+  color:#000000;
+  text-align:left;
+}
+
+/* Using new CSS3 selectors for styling*/
+.simpletablestyle tr:nth-child(odd) {
+  background: #f4f3f3;
+}
+.simpletablestyle tr:nth-child(even) {
+  background: #ffffff;
+}
+
+.simpletablestyle td a:hover {
+  color:#3883ce;
+  text-decoration:none;
+}

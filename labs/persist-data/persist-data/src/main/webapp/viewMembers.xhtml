@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	Member Registration To Mailing List web app:
+    </ui:define>
+	<ui:define name="application_name">
+    	Say Hello
+    </ui:define>
+	<ui:define name="content">
+		<h1>All registered email addresses</h1>
+		<br class="clear"/>
+		<h:form id="viewform">
+			
+				<h:outputLabel value="Members:"/>
+				<br class="clear"/>
+				<ul>
+					<ui:repeat value="#{memberBean.members}" var="member">
+						<li>
+							<h:outputText value="#{member.emailId}"/><br/>
+							
+						</li>
+					</ui:repeat>
+				</ul>
+			<a href="/persist-data/index.xhtml">back</a>
+			</h:form>
+	</ui:define>
+</ui:composition>

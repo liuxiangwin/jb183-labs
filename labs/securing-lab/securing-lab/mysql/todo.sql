@@ -1,0 +1,16 @@
+USE todo;
+DROP TABLE IF EXISTS `Item`;
+CREATE TABLE `Item` (`id` BIGINT not null auto_increment primary key, `description` VARCHAR(100), `done` BIT);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (1,'Pick up newspaper', 0);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (2,'Buy groceries', 1);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (3,'Pay telephone bill', 0);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (4,'Buy milk', 0);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (5,'Buy butter', 1);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (6,'Buy bread', 1);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (7,'Write paper', 0);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (8,'Fill Gas', 1);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (9,'Take out Trash', 0);
+INSERT INTO `Item` (`id`,`description`,`done`) VALUES (10,'Order books', 1);
+DROP TABLE IF EXISTS `User`;
+CREATE TABLE `User` (`id` BIGINT not null auto_increment primary key, `username` VARCHAR(100));
+INSERT INTO `User` (`id`, `username`) VALUES (1,'Guest');

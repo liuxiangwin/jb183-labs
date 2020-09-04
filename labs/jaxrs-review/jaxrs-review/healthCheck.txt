@@ -1,0 +1,4 @@
+public Response getHealthCheck() {
+  ResponseBuilder builder = Response.status(Status.OK);
+  return builder.build();
+ }

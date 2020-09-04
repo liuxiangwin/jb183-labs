@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo">
+<head>
+    <title>TODO List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/ng-grid.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <!-- Load angularjs -->
+    <script src="js/libs/angular.js"></script>
+    <!-- Load angularjs-route, which allows us to use multiple views displayed through application routes -->
+    <script src="js/libs/angular-route.js"></script>
+    <!-- Load angularjs-resource, which allows us to interact with REST resources as high level services -->
+    <script src="js/libs/angular-resource.js"></script>
+
+    <script src="js/libs/jquery-2.0.3.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/ng-grid-2.0.11.min.js"></script>
+    <script src="js/libs/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="js/libs/dirPagination.js"></script>
+
+    <!-- Load the controllers for our app -->
+    <script src="js/controllers.js"></script>
+
+    <!-- Load the application wide JS, such as route definitions -->
+    <script src="js/app.js"></script>
+
+    <!-- Load the services we have defined for the application, particularly the REST services -->
+    <script src="js/services.js"></script>
+
+</head>
+<body>
+
+        <div ng-view>
+            <!-- This div will be templated by AngularJS -->
+            [Template content will be inserted here]
+        </div>
+
+</body>
+</html>

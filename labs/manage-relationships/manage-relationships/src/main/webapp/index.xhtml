@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	Classroom View web app
+    </ui:define>
+	<ui:define name="application_name">
+    	Classroom View web app
+    </ui:define>
+	<ui:define name="content">
+		<h1>Classroom View web app</h1>
+		<br class="clear"/>
+		<h:form id="form">
+			<p class="input">
+				<h:outputLabel value="Select a Classroom:" for="classroom" />
+				<h:selectOneMenu id="classroom" value="#{classroomView.currentClassroom}" valueChangeListener="#{classroomView.update}" onchange="submit()" converter="SelectItemToEntityConverter">
+					<f:selectItem itemLabel="Choose one ..." itemValue="#{null}"/>
+					<f:selectItems value="#{classroomView.classrooms}" var="classroom" itemValue="#{classroom}" itemLabel="#{classroom.name}"/>
+				</h:selectOneMenu>
+			</p>
+			<br class="clear"/>
+			<br class="clear"/>
+			<p>
+				<h:outputLabel value="Teacher:" for="teacher"/>
+				<h:outputText value="#{classroomView.teacher.name}" id="teacher"/>
+				<br class="clear"/>
+				<br class="clear"/>
+				<h:outputLabel value="Students:"/>
+				<br class="clear"/>
+				<ul>
+					<ui:repeat value="#{classroomView.students}" var="person">
+						<li>
+							<h:outputText value="#{person.name}"/>
+						</li>
+					</ui:repeat>
+				</ul>
+			</p>
+		</h:form>
+	</ui:define>
+</ui:composition>

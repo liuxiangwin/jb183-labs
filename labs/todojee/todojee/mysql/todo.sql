@@ -1,0 +1,16 @@
+USE todo;
+DROP TABLE IF EXISTS `Item`;
+DROP TABLE IF EXISTS `User`;
+CREATE TABLE `User` (`id` BIGINT not null auto_increment primary key, `username` VARCHAR(100));
+INSERT INTO `User` (`id`, `username`) VALUES (1,'Guest');
+CREATE TABLE `Item` (`id` BIGINT not null auto_increment primary key, `description` VARCHAR(100), `done` BIT, `user_id` BIGINT, KEY `userIDKEY` (`user_id`), CONSTRAINT `userIDConstraint` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`));
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (1,'Pick up newspaper', 0,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (2,'Buy groceries', 1,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (3,'Pay telephone bill', 0,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (4,'Buy milk', 0,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (5,'Buy butter', 1,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (6,'Buy bread', 1,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (7,'Write paper', 0,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (8,'Fill Gas', 1,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (9,'Take out Trash', 0,1);
+INSERT INTO `Item` (`id`,`description`,`done`,`user_id`) VALUES (10,'Order books', 1,1);

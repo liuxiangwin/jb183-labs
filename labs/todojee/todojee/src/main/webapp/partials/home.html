@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is a partial, and is templated by AngularJS -->
+<h1>To Do List Application</h1>
+
+<br/>
+
+<div class="message">
+  <!-- We output a list of success messages (appropriately styled!) for the form. -->
+  <ul ng-hide="!successMessages" class="success">
+      <li ng-repeat="message in successMessages">{{message}}</li>
+  </ul>
+
+  <!-- Output the list of error messages if any. -->
+  <ul ng-hide="!errorMessages" class="error">
+      <li ng-repeat="message in errorMessages">{{message}}</li>
+  </ul>
+</div>
+
+<div class="grid">
+    <div>
+        <h3>Task List</h3>
+    </div>
+
+      <em ng-show="items.length == 0">There are no Tasks.</em>
+
+      <table class="table table-striped table-bordered table-condensed" ng-hide="items.length == 0">
+          <thead class="text-center">
+              <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Description</th>
+                  <th class="text-center">Done</th>
+                  <th class="text-center"></th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr dir-paginate="item in items | itemsPerPage: pageSize" current-page="currentPage">
+            <td>{{item.id}}</td>
+              <td><span class="done-{{item.done}}">{{item.description}}</span></td>
+              <!-- <td><input type="checkbox" ng-model="item.done" ng-change="toggleDone(item)"/></td> -->
+              <td><input type="checkbox" ng-model="item.done" ng-change="toggleDone(item)" /></td>
+              <!-- <td><button ng-click="delete(item.id)">Delete</button></td> -->
+              <td><span class="glyphicon glyphicon-remove remove" ng-click="delete(item.id)"></span></td>
+          </tbody>
+      </table>
+      <dir-pagination-controls boundary-links="true" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+
+<div class="form">
+  <div>
+      <h3>Add Task</h3>
+  </div>
+
+  <div>
+    <form name="itemForm" ng-submit="register()" novalidate>
+      <div class="form-group" ng-class="{'has-error' : itemForm.description.$invalid && itemForm.description.$dirty}">
+          <label for="description">Description:</label>
+          <!-- Display a check when the field is valid and was modified -->
+          <span ng-class="{'glyphicon glyphicon-ok' : itemForm.description.$valid && itemForm.description.$dirty}"></span>
+
+          <input id="description" name="description" type="text" class="form-control" maxlength="100"
+                 ng-model="newItem.description" placeholder="Task Description" autofocus
+                 required ng-minlength="5" ng-maxlength="100"/>
+
+          <!-- Validation messages to be displayed on required, minlength and maxlength -->
+          <p class="help-block" ng-show="itemForm.description.$error.required">Add Description.</p>
+          <p class="help-block" ng-show="itemForm.description.$error.minlength">Description must be at least 5 characters long.</p>
+          <p class="help-block" ng-show="itemForm.description.$error.maxlength">Description cannot be longer than 100 characters.</p>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error' : itemForm.done.$invalid && itemForm.done.$dirty}">
+          <label for="done">Completed:</label>
+          <!-- Display a check when the field is valid and was modified -->
+          <span ng-class="{'glyphicon glyphicon-ok' : itemForm.done.$valid && itemForm.done.$dirty}"></span>
+
+          <input id="done" name="done" type="checkbox" class="form-control"
+                 ng-model="newItem.done" />
+      </div>
+
+      <div class="buttons">
+          <button type="submit" ng-disabled="itemForm.$invalid" id="register" class="btn btn-primary"
+            ng-disabled="itemForm.$invalid">Save</button>
+          <button type="button" id="cancel" class="btn btn-primary" ng-click="reset()">Clear</button>
+      </div>
+
+    </form>
+</div>

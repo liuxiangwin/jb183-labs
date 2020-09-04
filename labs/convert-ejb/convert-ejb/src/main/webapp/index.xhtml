@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	Magic 8 Ball web app
+    </ui:define>
+	<ui:define name="application_name">
+    	Magic 8 Ball web app
+    </ui:define>
+	<ui:define name="content">
+		<h1>Magic 8 Ball web app</h1>
+		<br class="clear"/>
+		<h:form id="form">
+			<p class="input">
+				<h:outputLabel value="Enter your question:" for="question" />
+				<h:inputText value="#{eightBall.question}" id="question" required="true" requiredMessage="Question is required"/>
+			</p>
+			<br class="clear"/>
+			<br class="clear"/>
+			<p class="input">
+			    <h:commandButton action="#{eightBall.answerQuestion()}"  value="Submit" styleClass="btn" />
+			</p>
+			<br class="clear"/>
+			<br class="clear"/>
+			<h:messages styleClass="messages"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,68 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+		<artifactId>hello-remote-ejb</artifactId>
+		<packaging>ejb</packaging>
+		<parent>
+  	<groupId>com.redhat.training</groupId>
+  	<artifactId>parent-pom</artifactId>
+  	<version>1.0</version>
+  	<relativePath>../../pom.xml</relativePath>
+  </parent>
+
+	<properties>
+        	<version.ejb.plugin>2.3</version.ejb.plugin>
+         	
+    </properties>
+
+		<dependencies>
+        		<dependency>
+            			<groupId>javax.enterprise</groupId>
+            			<artifactId>cdi-api</artifactId>
+            			<scope>provided</scope>
+        		</dependency>
+
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in JBoss EAP -->
+        		<dependency>
+            			<groupId>org.jboss.spec.javax.annotation</groupId>
+            			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+            			<scope>provided</scope>
+        		</dependency>
+
+        <!-- Import the EJB API, we use provided scope as the API is included in
+            JBoss EAP -->
+        		<dependency>
+            			<groupId>org.jboss.spec.javax.ejb</groupId>
+            			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            			<scope>provided</scope>
+        		</dependency>
+
+    	</dependencies>
+
+		<build>
+        		<finalName>hello-ejb-remote</finalName>
+			<plugins>
+            			<plugin>
+                			<groupId>org.wildfly.plugins</groupId>
+                			<artifactId>wildfly-maven-plugin</artifactId>
+                			<version>${version.wildfly.maven.plugin}</version>
+                			<configuration>
+                    				<filename>${project.build.finalName}.jar</filename>
+                			</configuration>
+            			</plugin>
+            			<plugin>
+                			<groupId>org.apache.maven.plugins</groupId>
+                			<artifactId>maven-ejb-plugin</artifactId>
+                			<version>${version.ejb.plugin}</version>
+                			<configuration>
+                    				<ejbVersion>3.1</ejbVersion>
+                    				<generateClient>true</generateClient>
+                			</configuration>
+            			</plugin>
+
+        		</plugins>
+    		</build>
+
+</project>
